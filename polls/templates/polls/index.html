@@ -1,0 +1,13 @@
+{% if mock_tests %}
+  <ul>
+  {% for mock_test in mock_tests %}
+    <li><a href="{% url 'polls:mock_test_result' mock_test.id %}">{{mock_test}}</li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No Mock Tests are available.</p>
+{% endif %}
+
+<a href="{% url 'polls:start_mock_test' %}">Start a new mock test</a>
+
+

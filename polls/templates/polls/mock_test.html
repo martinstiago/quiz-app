@@ -1,0 +1,11 @@
+<form action="{% url 'polls:answer_mock_test' mock_test.id %}" method="post">
+  {% csrf_token %}
+  {% for question in mock_test.questions.all %}
+    <legend><h1>{{ question.question_text }}</h1></legend>
+    {% for choice in question.choice_set.all %}
+      <input type="radio" name="{{question.id}}" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+      <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+  {% endfor %}
+  <input type="submit" value="Answer">
+</form>
