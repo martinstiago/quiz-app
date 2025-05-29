@@ -1,11 +1,44 @@
+<style>
+  .tags-section {
+    margin-bottom: 15px;
+  }
+  .tag {
+    display: inline-block;
+    background-color: #e1e1e1;
+    border-radius: 15px;
+    padding: 4px 10px;
+    margin-right: 5px;
+    font-size: 0.9em;
+    color: #555;
+  }
+  .question-section {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+  }
+</style>
+
 <form action="{% url 'polls:answer_mock_test' mock_test.id %}" method="post">
   {% csrf_token %}
   {% for question in mock_test.questions.all %}
+  <div class="question-section">
     <legend><h1>{{ question.question_text }}</h1></legend>
-    {% for choice in question.choice_set.all %}
+    
+    <div class="tags-section">
+      <h4>Tags:</h4>
+      {% for tag in question.tags.all %}
+        <span class="tag">{{ tag.name }}</span>
+      {% endfor %}
+    </div>
+    
+    <div class="choices-section">
+      <h4>Options:</h4>
+      {% for choice in question.choice_set.all %}
       <input type="radio" name="{{question.id}}" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
       <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-    {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
   {% endfor %}
   <input type="submit" value="Answer">
 </form>
