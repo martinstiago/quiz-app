@@ -15,6 +15,9 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
+    def randomise_choices(self):
+        return self.choice_set.order_by('?')
+
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -37,4 +40,6 @@ class MockTest(models.Model):
 
     def score(self):
         return self.choices.filter(correct=True).count()
+
+
 
