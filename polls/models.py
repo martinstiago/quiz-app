@@ -41,5 +41,6 @@ class MockTest(models.Model):
     def score(self):
         return self.choices.filter(correct=True).count()
 
-
+    def randomise_questions(self):
+        return self.questions.order_by('?')
 

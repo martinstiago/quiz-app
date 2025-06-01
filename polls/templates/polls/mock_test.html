@@ -20,7 +20,7 @@
 
 <form action="{% url 'polls:answer_mock_test' mock_test.id %}" method="post">
   {% csrf_token %}
-  {% for question in mock_test.questions.all %}
+  {% for question in mock_test.randomise_questions %}
   <div class="question-section">
     <legend><h1>{{ question.question_text }}</h1></legend>
     
