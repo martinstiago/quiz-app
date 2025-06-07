@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+
 {% if mock_tests %}
   <ul>
   {% for mock_test in mock_tests %}

@@ -1,22 +1,7 @@
-<style>
-  .tags-section {
-    margin-bottom: 15px;
-  }
-  .tag {
-    display: inline-block;
-    background-color: #e1e1e1;
-    border-radius: 15px;
-    padding: 4px 10px;
-    margin-right: 5px;
-    font-size: 0.9em;
-    color: #555;
-  }
-  .question-section {
-    margin-bottom: 30px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 20px;
-  }
-</style>
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
 
 <form action="{% url 'polls:answer_mock_test' mock_test.id %}" method="post">
   {% csrf_token %}
