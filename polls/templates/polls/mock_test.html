@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="{% static 'polls/style.css' %}" />
 
+{% if mock_test.id %}
 <form action="{% url 'polls:answer_mock_test' mock_test.id %}" method="post">
   {% csrf_token %} {% for question in mock_test.randomise_questions %}
   <div class="question-section">
@@ -33,3 +34,4 @@
     <input class="btn" type="submit" value="Answer" />
   </div>
 </form>
+{% endif %}
