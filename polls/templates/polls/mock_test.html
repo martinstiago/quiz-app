@@ -1,29 +1,35 @@
-
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+<link rel="stylesheet" href="{% static 'polls/style.css' %}" />
 
 <form action="{% url 'polls:answer_mock_test' mock_test.id %}" method="post">
-  {% csrf_token %}
-  {% for question in mock_test.randomise_questions %}
+  {% csrf_token %} {% for question in mock_test.randomise_questions %}
   <div class="question-section">
     <legend><h1>{{ question.question_text }}</h1></legend>
-    
+
     <div class="tags-section">
       <h4>Tags:</h4>
       {% for tag in question.tags.all %}
-        <span class="tag">{{ tag.name }}</span>
+      <span class="tag">{{ tag.name }}</span>
       {% endfor %}
     </div>
-    
+
     <div class="choices-section">
       <h4>Options:</h4>
       {% for choice in question.randomise_choices %}
-      <input type="radio" name="{{question.id}}" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-      <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+      <input
+        type="radio"
+        name="{{question.id}}"
+        id="choice{{ forloop.counter }}"
+        value="{{ choice.id }}"
+      />
+      <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label
+      ><br />
       {% endfor %}
     </div>
   </div>
   {% endfor %}
-  <input type="submit" value="Answer">
+  <div class="submit-section">
+    <input class="btn" type="submit" value="Answer" />
+  </div>
 </form>
