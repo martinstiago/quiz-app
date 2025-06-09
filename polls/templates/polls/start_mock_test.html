@@ -1,0 +1,6 @@
+<h2>Start a New Mock Test</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Start Mock Test</button>
+</form>
